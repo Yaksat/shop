@@ -24,7 +24,18 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'regex:/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/']
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'content' => 'required|string',
+            'preview_image' => 'required|file',
+            'price' => 'required|integer',
+            'count' => 'required|integer',
+            'is_published' => 'nullable',
+            'category_id' => 'nullable|integer|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
+            'colors' => 'nullable|array',
+            'colors.*' => 'nullable|integer|exists:colors,id',
         ];
     }
 }

@@ -24,7 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'regex:/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/']
+            'title' => 'required|unique:products,title,' . $this->product_id,
+            'product_id' => 'required|integer|exists:products,id',
         ];
     }
 }

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Product;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Color\UpdateRequest;
-use App\Models\Color;
-use Illuminate\Http\Request;
+use App\Http\Requests\Product\UpdateRequest;
+use App\Models\Product;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
-    public function __invoke(UpdateRequest $request, Color $color)
+    public function __invoke(UpdateRequest $request, Product $product)
     {
         $data = $request->validated();
-        $color->update($data);
 
-        return view('color.show', compact('color'));
+        $product = $this->service->update($data, $product);
+
+        return view('product.show', compact('product'));
     }
 }
