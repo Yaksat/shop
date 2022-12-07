@@ -24,8 +24,18 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:products,title,' . $this->product_id,
-            'product_id' => 'required|integer|exists:products,id',
+            'title' => 'required|string|unique:products,title,' . $this->product_id,
+            'description' => 'required|string',
+            'content' => 'required|string',
+            'preview_image' => 'nullable|file',
+            'price' => 'required|integer',
+            'count' => 'required|integer',
+            'is_published' => 'nullable',
+            'category_id' => 'nullable|integer|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
+            'colors' => 'nullable|array',
+            'colors.*' => 'nullable|integer|exists:colors,id',
         ];
     }
 }

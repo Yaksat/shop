@@ -62,8 +62,12 @@ class ProductService
 
             $product->update($data);
 
-            if (isset($tagIds)) {
-                $post->tags()->sync($tagIds);
+            if (isset($tagsIds)) {
+                $product->tags()->sync($tagsIds);
+            }
+
+            if (isset($colorsIds)) {
+                $product->colors()->sync($colorsIds);
             }
 
             Db::commit();
@@ -72,6 +76,6 @@ class ProductService
             abort(500);
         }
 
-        return $post;
+        return $product;
     }
 }

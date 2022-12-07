@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Models\Color;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ShowController extends BaseController
 {
-    public function __invoke(Color $color)
+    public function __invoke(Product $product)
     {
-        return view('color.show', compact('color'));
+        return view('product.show', compact('product'));
     }
 }
