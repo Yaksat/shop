@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Models\Color;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class DeleteController extends BaseController
 {
-    public function __invoke(Color $color)
+    public function __invoke(Product $product)
     {
-        $color->delete();
+        $product->delete();
 
-        return redirect()->route('color.index');
+        return redirect()->route('product.index');
     }
 }

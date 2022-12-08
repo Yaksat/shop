@@ -86,14 +86,17 @@
                         <select name="colors[]" class="colors" multiple="multiple" data-placeholder="Выберите цвет" style="width: 100%;">
                             @if(is_array(old('colors')))
                                 @foreach($colors as $color)
-                                    <option {{ in_array($color->id, old('colors')) ? ' selected' : '' }} value="{{ $color->id }}">{{ $color->title }}</option>
+                                    <option {{ in_array($color->id, old('colors')) ? ' selected' : '' }} value="{{ $color->id }}">
+                                        {{ $color->title }}
+                                    </option>
                                 @endforeach
                             @else
                                 @foreach($colors as $color)
-                                    <option {{ in_array($color->id, $product->colors->pluck('id')->toArray()) ? ' selected' : '' }} value="{{ $color->id }}"> {{ $color->title }} </option>
+                                    <option {{ in_array($color->id, $product->colors->pluck('id')->toArray()) ? ' selected' : '' }} value="{{ $color->id }}">
+                                        {{ $color->title }}
+                                    </option>
                                 @endforeach
                             @endif
-
                         </select>
                     </div>
 
