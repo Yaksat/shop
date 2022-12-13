@@ -60,12 +60,20 @@
                                         <td> {{ $product->price }} </td>
                                     </tr>
                                     <tr>
+                                        <td>Старая цена</td>
+                                        <td> {{ $product->old_price }} </td>
+                                    </tr>
+                                    <tr>
                                         <td>Количество на складе</td>
                                         <td> {{ $product->count }} </td>
                                     </tr>
                                     <tr>
                                         <td>Категория</td>
-                                        <td> {{ $product->category->title }} </td>
+                                        <td>
+                                            @isset($product->category)
+                                                {{ $product->category->title }}
+                                            @endisset
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Теги</td>
