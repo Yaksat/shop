@@ -76,6 +76,14 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Группа</td>
+                                        <td>
+                                            @isset($product->group)
+                                                {{ $product->group->title }}
+                                            @endisset
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Теги</td>
                                         <td>
                                             @foreach($product->tags as $tag)
