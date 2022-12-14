@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources\Product;
 
+use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Category\GroupResource;
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -15,6 +17,8 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
+        $products = Product::where('group_id', $this->group_id)->get();
+
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -25,7 +29,8 @@ class ProductResource extends JsonResource
             'old_price' => $this->old_price,
             'count' => $this->count,
             'is_published' => $this->is_published,
-            'category' => new GroupResource($this->category),
+            'category' => new CategoryResource($this->category),
+            'group_products' => ProductMinResource::collection($products),
         ];
     }
 }
