@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,6 +24,10 @@ class ProductService
                 $colorsIds = $data['colors'];
                 unset($data['colors']);
             }
+            if (isset($data['product_images'])) {
+                $productImages = $data['product_images'];
+                unset($data['product_images']);
+            }
 
             $product = Product::firstOrCreate([
                 'title' => $data['title']
@@ -33,6 +38,16 @@ class ProductService
             }
             if (isset($colorsIds)) {
                 $product->colors()->attach($colorsIds);
+            }
+            if (isset($productImages)) {
+                foreach ($productImages as $productImage) {
+                    $filePath = Storage::disk('public')->put('/images', $productImage);
+                    ProductImage::create([
+                        'file_path' => $filePath,
+                        'product_id' => $product->id,
+                    ]);
+                }
+
             }
 
             Db::commit();
