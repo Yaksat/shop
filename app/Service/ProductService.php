@@ -47,7 +47,6 @@ class ProductService
                         'product_id' => $product->id,
                     ]);
                 }
-
             }
 
             Db::commit();
